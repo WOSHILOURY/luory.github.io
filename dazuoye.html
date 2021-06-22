@@ -1,0 +1,768 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>构建简单MDB网站</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__html"><h2><a id="_0"></a>前言</h2>
+<p>经过之前HTML和CSS的学习，现在我们来进行MDB的学习<br>
+搭建 MDB 项目<br>
+MDB(官网) 分为免费版和专业版两种, 当然专业版提供更多的样式. 经过挖掘, 我们成功将 Free 升级为 Pro, 但请仅供学习.详情请参考原出处https://qige.io/web/web.html#bs<br>
+请下载 MDB-Pro-4.12种子项目 , 解压至任意目录即可.<br>
+用 Code 打开该文件夹, 浏览器打开index.html, 看到如下画面即OK :<br>
+<img src="https://img-blog.csdnimg.cn/20210613192905768.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl81MTA4NzU1NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2><a id="_7"></a>页面结构</h2>
+<p>解压你下载的 MDB Pro 模板文件到某文件夹， code 中打开该文件夹（这是我们的工作目录）.<br>
+跟上一个教程一样, 打开index.html文件, 在中写入如下页面结构代码:</p>
+<pre><code class="prism language-c"><span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> start your project here <span class="token operator">--</span><span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>Main Navigation<span class="token operator">--</span><span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span>header<span class="token operator">&gt;</span>
+
+<span class="token operator">&lt;</span><span class="token operator">/</span>header<span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>Main Navigation<span class="token operator">--</span><span class="token operator">&gt;</span>
+
+<span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>Main layout<span class="token operator">--</span><span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span>main<span class="token operator">&gt;</span>
+
+<span class="token operator">&lt;</span><span class="token operator">/</span>main<span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>Main layout<span class="token operator">--</span><span class="token operator">&gt;</span>
+
+<span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>Footer<span class="token operator">--</span><span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span>footer<span class="token operator">&gt;</span>
+
+<span class="token operator">&lt;</span><span class="token operator">/</span>footer<span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>Footer<span class="token operator">--</span><span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> end your project here <span class="token operator">--</span><span class="token operator">&gt;</span>
+
+</code></pre>
+<p>当然，现在浏览器中是看不到任何内容的.<br>
+我们要构建的公司首页分为三个部分：</p>
+<p>header元素放置导航<br>
+main元素是页面主要内容<br>
+footer元素是一些版权和其它链接</p>
+<p>至此，页面基本结构搭建完毕, 下面我们开始构建导航。</p>
+<h2><a id="navbar_41"></a>navbar导航条</h2>
+<pre><code class="prism language-c"><span class="token operator">&lt;</span>header<span class="token operator">&gt;</span>
+  <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>Navbar<span class="token operator">--</span><span class="token operator">&gt;</span>
+  <span class="token operator">&lt;</span>nav class<span class="token operator">=</span><span class="token string">"navbar navbar-expand-lg navbar-dark primary-color"</span><span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> Navbar brand <span class="token operator">--</span><span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>a class<span class="token operator">=</span><span class="token string">"navbar-brand"</span> href<span class="token operator">=</span><span class="token string">"#"</span><span class="token operator">&gt;</span>Navbar<span class="token operator">&lt;</span><span class="token operator">/</span>a<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> Collapse button <span class="token operator">--</span><span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>button class<span class="token operator">=</span><span class="token string">"navbar-toggler"</span> type<span class="token operator">=</span><span class="token string">"button"</span> data<span class="token operator">-</span>toggle<span class="token operator">=</span><span class="token string">"collapse"</span> data<span class="token operator">-</span>target<span class="token operator">=</span><span class="token string">"#basicExampleNav"</span>
+      aria<span class="token operator">-</span>controls<span class="token operator">=</span><span class="token string">"basicExampleNav"</span> aria<span class="token operator">-</span>expanded<span class="token operator">=</span><span class="token string">"false"</span> aria<span class="token operator">-</span>label<span class="token operator">=</span><span class="token string">"Toggle navigation"</span><span class="token operator">&gt;</span>
+      <span class="token operator">&lt;</span>span class<span class="token operator">=</span><span class="token string">"navbar-toggler-icon"</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>span<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span>button<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> Collapsible content <span class="token operator">--</span><span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>div class<span class="token operator">=</span><span class="token string">"collapse navbar-collapse"</span> id<span class="token operator">=</span><span class="token string">"basicExampleNav"</span><span class="token operator">&gt;</span>
+      <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> Links <span class="token operator">--</span><span class="token operator">&gt;</span>
+      <span class="token operator">&lt;</span>ul class<span class="token operator">=</span><span class="token string">"navbar-nav mr-auto"</span><span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>li class<span class="token operator">=</span><span class="token string">"nav-item active"</span><span class="token operator">&gt;</span>
+          <span class="token operator">&lt;</span>a class<span class="token operator">=</span><span class="token string">"nav-link"</span> href<span class="token operator">=</span><span class="token string">"#"</span><span class="token operator">&gt;</span>Home
+            <span class="token operator">&lt;</span>span class<span class="token operator">=</span><span class="token string">"sr-only"</span><span class="token operator">&gt;</span><span class="token punctuation">(</span>current<span class="token punctuation">)</span><span class="token operator">&lt;</span><span class="token operator">/</span>span<span class="token operator">&gt;</span>
+          <span class="token operator">&lt;</span><span class="token operator">/</span>a<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">/</span>li<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>li class<span class="token operator">=</span><span class="token string">"nav-item"</span><span class="token operator">&gt;</span>
+          <span class="token operator">&lt;</span>a class<span class="token operator">=</span><span class="token string">"nav-link"</span> href<span class="token operator">=</span><span class="token string">"#"</span><span class="token operator">&gt;</span>Features<span class="token operator">&lt;</span><span class="token operator">/</span>a<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">/</span>li<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>li class<span class="token operator">=</span><span class="token string">"nav-item"</span><span class="token operator">&gt;</span>
+          <span class="token operator">&lt;</span>a class<span class="token operator">=</span><span class="token string">"nav-link"</span> href<span class="token operator">=</span><span class="token string">"#"</span><span class="token operator">&gt;</span>Pricing<span class="token operator">&lt;</span><span class="token operator">/</span>a<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">/</span>li<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> Dropdown <span class="token operator">--</span><span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>li class<span class="token operator">=</span><span class="token string">"nav-item dropdown"</span><span class="token operator">&gt;</span>
+          <span class="token operator">&lt;</span>a class<span class="token operator">=</span><span class="token string">"nav-link dropdown-toggle"</span> id<span class="token operator">=</span><span class="token string">"navbarDropdownMenuLink"</span> data<span class="token operator">-</span>toggle<span class="token operator">=</span><span class="token string">"dropdown"</span> aria<span class="token operator">-</span>haspopup<span class="token operator">=</span><span class="token string">"true"</span>
+            aria<span class="token operator">-</span>expanded<span class="token operator">=</span><span class="token string">"false"</span><span class="token operator">&gt;</span>Dropdown<span class="token operator">&lt;</span><span class="token operator">/</span>a<span class="token operator">&gt;</span>
+          <span class="token operator">&lt;</span>div class<span class="token operator">=</span><span class="token string">"dropdown-menu dropdown-primary"</span> aria<span class="token operator">-</span>labelledby<span class="token operator">=</span><span class="token string">"navbarDropdownMenuLink"</span><span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span>a class<span class="token operator">=</span><span class="token string">"dropdown-item"</span> href<span class="token operator">=</span><span class="token string">"#"</span><span class="token operator">&gt;</span>Action<span class="token operator">&lt;</span><span class="token operator">/</span>a<span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span>a class<span class="token operator">=</span><span class="token string">"dropdown-item"</span> href<span class="token operator">=</span><span class="token string">"#"</span><span class="token operator">&gt;</span>Another action<span class="token operator">&lt;</span><span class="token operator">/</span>a<span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span>a class<span class="token operator">=</span><span class="token string">"dropdown-item"</span> href<span class="token operator">=</span><span class="token string">"#"</span><span class="token operator">&gt;</span>Something <span class="token keyword">else</span> here<span class="token operator">&lt;</span><span class="token operator">/</span>a<span class="token operator">&gt;</span>
+          <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">/</span>li<span class="token operator">&gt;</span>
+      <span class="token operator">&lt;</span><span class="token operator">/</span>ul<span class="token operator">&gt;</span>
+      <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> Links <span class="token operator">--</span><span class="token operator">&gt;</span>
+      <span class="token operator">&lt;</span>form class<span class="token operator">=</span><span class="token string">"form-inline"</span><span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>div class<span class="token operator">=</span><span class="token string">"md-form my-0"</span><span class="token operator">&gt;</span>
+          <span class="token operator">&lt;</span>input class<span class="token operator">=</span><span class="token string">"form-control mr-sm-2"</span> type<span class="token operator">=</span><span class="token string">"text"</span> placeholder<span class="token operator">=</span><span class="token string">"Search"</span> aria<span class="token operator">-</span>label<span class="token operator">=</span><span class="token string">"Search"</span><span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+      <span class="token operator">&lt;</span><span class="token operator">/</span>form<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> Collapsible content <span class="token operator">--</span><span class="token operator">&gt;</span>
+  <span class="token operator">&lt;</span><span class="token operator">/</span>nav<span class="token operator">&gt;</span>
+  <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span><span class="token operator">/</span><span class="token punctuation">.</span>Navbar<span class="token operator">--</span><span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>header<span class="token operator">&gt;</span>
+
+</code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20210614113126613.png" alt="在这里插入图片描述"><br>
+导航条结构<br>
+仔细观察导航条代码, 你会看到我们使用了一个</p>
+<p>标签, 其内部实际包含了三个部分:<br>
+<code>&lt;a&gt;</code> 超链接, 用于展示公司名称或logo<br>
+按钮, 当在小尺寸屏幕时会出现(你可能在浏览器中并没看到该按钮, 后面进一步解释)区块, 用于放置各个导航超链接<br>
+下面我们分析一下</p>
+<p>标签的 CSS 样式类. 详细的Navbar介绍, 请访问 MDB-Nav<br>
+.navbar<br>
+这是导航条必须的样式, 你可以试试去掉后发生的变化(推荐使用开发者工具!)</p>
+<p>.navbar-expand-md<br>
+表明当处于中等屏幕及以上尺寸(&gt;768px)时, 导航条扩展开, 否则导航超链接不显示, 而显示一个折叠按钮.<br>
+在浏览器中打开开发者工具(Ctrl+Shift+I), 可看到开发者窗口左上方的转换显示设备图标, 点击它或Ctrl+Shift+M则可让你的页面在各种手机/平板/PC等屏幕尺寸上进行模拟显示, 从而知道最终效果.<br>
+<img src="https://img-blog.csdnimg.cn/20210614113309638.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl81MTA4NzU1NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>
+提示: MDB将屏幕尺寸分为5类即: xs/sm/md/lg/xl(extra small/small/medium/large/extra large)</p>
+<p>navbar-dark<br>
+将让导航条的背景与文字颜色自动高对比(去掉试试)</p>
+<p>primary-color<br>
+表明导航条使用主色调(蓝色). 请参见MBD的颜色. (修改为你中意的颜色试试)</p>
+<p>内部元素分析<br>
+前面已经提及,在导航条内部有<code>&lt;a&gt;,&lt;button&gt;,&lt;div&gt;</code>三个标签, 下面我们分析一下包含导航链接的</p>
+<p>标签.<br>
+提示: 留意该</p>
+<p>标签有id属性, 这是供调用的.<br>
+该标签内有一个</p>
+<p>无序列表(放置3个导航链接及1个下拉列表)和表单(只有一个用于搜索的input).<br>
+navbar-nav<br>
+表明是导航条中的导航链接, 使得</p>
+<p>的列表项不会分布于多行(去掉试试).<br>
+mr-auto<br>
+该样式将会把其后的项(即搜索框靠右对齐), 你去掉该样式就明白了. 参见自浮动.</p>
+<p>mr 代表 margin-right, 即右外边距, 有关这部分内容(代码的后面你还可以看到一个my-0)我们后面讲述.</p>
+<p>active<br>
+注意这个样式, 它表明哪个超链接当前是激活的, 一般用于表明当前处于哪个活动页面.</p>
+<p>sr-only<br>
+意思是 screen read only, 为盲人上网设置的. 当前你可不用管它.</p>
+<h2><a id="_142"></a>栅格</h2>
+<p>下面我们将为<code>&lt;main&gt;</code>标签即页面的主体进行布局. 在<code>&lt;main&gt;</code>标签中输入如下代码:</p>
+<pre><code class="prism language-c"><span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>Main container<span class="token operator">--</span><span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span>div class<span class="token operator">=</span><span class="token string">"container"</span><span class="token operator">&gt;</span>
+  <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>Grid row <span class="token number">1</span><span class="token operator">--</span><span class="token operator">&gt;</span>
+  <span class="token operator">&lt;</span>div class<span class="token operator">=</span><span class="token string">"row"</span><span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>Grid column <span class="token number">1</span><span class="token operator">--</span><span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>div class<span class="token operator">=</span><span class="token string">"col-md-7"</span><span class="token operator">&gt;</span>
+      第一行<span class="token punctuation">,</span>第一列<span class="token punctuation">,</span> 中等尺寸屏幕及以上则宽 <span class="token number">7</span><span class="token operator">/</span><span class="token number">12</span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>Grid column<span class="token operator">--</span><span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>Grid column <span class="token number">2</span><span class="token operator">--</span><span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>div class<span class="token operator">=</span><span class="token string">"col-md-5"</span><span class="token operator">&gt;</span>
+      第一行<span class="token punctuation">,</span>第二列<span class="token punctuation">,</span> 中等尺寸屏幕及以上则宽 <span class="token number">5</span><span class="token operator">/</span><span class="token number">12</span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>Grid column<span class="token operator">--</span><span class="token operator">&gt;</span>
+  <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+  <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>Grid row<span class="token operator">--</span><span class="token operator">&gt;</span>
+  <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>Grid row <span class="token number">2</span><span class="token operator">--</span><span class="token operator">&gt;</span>
+  <span class="token operator">&lt;</span>div class<span class="token operator">=</span><span class="token string">"row"</span><span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>Grid column <span class="token number">1</span><span class="token operator">--</span><span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>div class<span class="token operator">=</span><span class="token string">"col-lg-4 col-md-12"</span><span class="token operator">&gt;</span>
+      第二行<span class="token punctuation">,</span>第一列<span class="token punctuation">,</span> 大尺寸屏幕及以上则宽 <span class="token number">4</span><span class="token operator">/</span><span class="token number">12</span><span class="token punctuation">,</span> 中等屏幕独占一行
+    <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>Grid column<span class="token operator">--</span><span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>Grid column <span class="token number">2</span><span class="token operator">--</span><span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>div class<span class="token operator">=</span><span class="token string">"col-lg-4 col-md-6"</span><span class="token operator">&gt;</span>
+      第二行<span class="token punctuation">,</span>第二列<span class="token punctuation">,</span> 大尺寸屏幕及以上则宽 <span class="token number">4</span><span class="token operator">/</span><span class="token number">12</span><span class="token punctuation">,</span> 中等屏幕占<span class="token number">6</span><span class="token operator">/</span><span class="token number">12</span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>Grid column<span class="token operator">--</span><span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>Grid column <span class="token number">3</span><span class="token operator">--</span><span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>div class<span class="token operator">=</span><span class="token string">"col-lg-4 col-md-6"</span><span class="token operator">&gt;</span>
+      第二行<span class="token punctuation">,</span>第三列<span class="token punctuation">,</span> 大尺寸屏幕及以上则宽 <span class="token number">4</span><span class="token operator">/</span><span class="token number">12</span><span class="token punctuation">,</span> 中等屏幕占<span class="token number">6</span><span class="token operator">/</span><span class="token number">12</span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>Grid column<span class="token operator">--</span><span class="token operator">&gt;</span>
+  <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+  <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>Grid row<span class="token operator">--</span><span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>Main container<span class="token operator">--</span><span class="token operator">&gt;</span>
+
+</code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20210614113858290.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl81MTA4NzU1NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>
+注意: 栅格用行-row 和列-col 来规划, 一行分为12列, 通过 col 后跟的数字来确定占比. 且需要放在容器(container)中才能生效</p>
+<p>请参考 Bootstrap中文网 的 container容器以及栅格.<br>
+下面我们开始对页面内容进行添加.</p>
+<h2><a id="_190"></a>页面主体</h2>
+<p>第一行<br>
+在页面主体<code>&lt;main&gt;</code>的第一行中，我们设置了两列。<br>
+第一列放置一张出彩的图像(可能会吸引我们的访问者)。第二列将用于放置标题，简短说明和按钮。<br>
+将第一行的第一列(即col-md-7)替换为如下代码:</p>
+<pre><code class="prism language-c"><span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>Grid column <span class="token number">1</span><span class="token operator">--</span><span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span>div class<span class="token operator">=</span><span class="token string">"col-md-7"</span><span class="token operator">&gt;</span>
+  <span class="token operator">&lt;</span>div class<span class="token operator">=</span><span class="token string">"view overlay z-depth-1-half"</span><span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>img src<span class="token operator">=</span><span class="token string">"https://mdbootstrap.com/img/Photos/Slides/img%20(70).jpg"</span> class<span class="token operator">=</span><span class="token string">"card-img-top"</span> alt<span class="token operator">=</span><span class="token string">""</span><span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>div class<span class="token operator">=</span><span class="token string">"mask rgba-white-light"</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+  <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>Grid column<span class="token operator">--</span><span class="token operator">&gt;</span>
+
+</code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20210614115441476.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl81MTA4NzU1NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>
+我们在这一列放置了一张带波纹特效( 鼠标移到图片上时呈现)的图片(.view .overlay), 并让图片有阴影效果(.z-depth-1-half). 详细学习请参考 MDB 图片, 以及阴影效果</p>
+<p>第二列将给出一下文字介绍, 将第一行的第二列(即col-md-5)替换为如下代码:</p>
+<pre><code class="prism language-c"><span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>Grid column <span class="token number">2</span><span class="token operator">--</span><span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span>div class<span class="token operator">=</span><span class="token string">"col-md-5"</span><span class="token operator">&gt;</span>
+  <span class="token operator">&lt;</span>h2<span class="token operator">&gt;</span>Some awesome heading<span class="token operator">&lt;</span><span class="token operator">/</span>h2<span class="token operator">&gt;</span>
+  <span class="token operator">&lt;</span>hr<span class="token operator">&gt;</span>
+  <span class="token operator">&lt;</span>p<span class="token operator">&gt;</span>Lorem ipsum dolor sit amet<span class="token punctuation">,</span> consectetur adipisicing elit<span class="token punctuation">.</span> Blanditiis pariatur quod ipsum atque quam dolorem
+    voluptate officia sunt placeat consectetur alias fugit cum praesentium ratione sint mollitia<span class="token punctuation">,</span> perferendis
+    natus quaerat<span class="token operator">!</span><span class="token operator">&lt;</span><span class="token operator">/</span>p<span class="token operator">&gt;</span>
+  <span class="token operator">&lt;</span>a href<span class="token operator">=</span><span class="token string">"#"</span> class<span class="token operator">=</span><span class="token string">"btn btn-primary"</span><span class="token operator">&gt;</span>Get it now<span class="token operator">!</span><span class="token operator">&lt;</span><span class="token operator">/</span>a<span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>Grid column<span class="token operator">--</span><span class="token operator">&gt;</span>
+
+</code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20210614122715431.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl81MTA4NzU1NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>在第二行, 我们使用卡片这种方式来放置一些我们站点的详细信息.</p>
+<p>提示: 用卡片的形式来向用户呈现信息非常实用, 也使用广泛. 看看 Google, Facebook, LinkedIn 等公司的设计就知道了.</p>
+<p>将整个第二行的(即row)替换为如下代码:</p>
+<pre><code class="prism language-c"><span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>Grid row <span class="token number">2</span><span class="token operator">--</span><span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span>div class<span class="token operator">=</span><span class="token string">"row"</span><span class="token operator">&gt;</span>
+
+  <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>Grid column<span class="token operator">--</span><span class="token operator">&gt;</span>
+  <span class="token operator">&lt;</span>div class<span class="token operator">=</span><span class="token string">"col-lg-4 col-md-12"</span><span class="token operator">&gt;</span>
+
+    <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>Card<span class="token operator">--</span><span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>div class<span class="token operator">=</span><span class="token string">"card"</span><span class="token operator">&gt;</span>
+
+      <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>Card image<span class="token operator">--</span><span class="token operator">&gt;</span>
+      <span class="token operator">&lt;</span>div class<span class="token operator">=</span><span class="token string">"view overlay"</span><span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>img src<span class="token operator">=</span><span class="token string">"https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(72).jpg"</span> class<span class="token operator">=</span><span class="token string">"card-img-top"</span>
+          alt<span class="token operator">=</span><span class="token string">""</span><span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>a href<span class="token operator">=</span><span class="token string">"#"</span><span class="token operator">&gt;</span>
+          <span class="token operator">&lt;</span>div class<span class="token operator">=</span><span class="token string">"mask rgba-white-slight"</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">/</span>a<span class="token operator">&gt;</span>
+      <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+
+      <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>Card content<span class="token operator">--</span><span class="token operator">&gt;</span>
+      <span class="token operator">&lt;</span>div class<span class="token operator">=</span><span class="token string">"card-body"</span><span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>Title<span class="token operator">--</span><span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>h4 class<span class="token operator">=</span><span class="token string">"card-title"</span><span class="token operator">&gt;</span>Card title<span class="token operator">&lt;</span><span class="token operator">/</span>h4<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>Text<span class="token operator">--</span><span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>p class<span class="token operator">=</span><span class="token string">"card-text"</span><span class="token operator">&gt;</span>Some quick example text to build on the card title and make up the bulk of the card's
+          content<span class="token punctuation">.</span><span class="token operator">&lt;</span><span class="token operator">/</span>p<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>a href<span class="token operator">=</span><span class="token string">"#!"</span> class<span class="token operator">=</span><span class="token string">"btn btn-primary"</span><span class="token operator">&gt;</span>Button<span class="token operator">&lt;</span><span class="token operator">/</span>a<span class="token operator">&gt;</span>
+      <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+
+    <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span><span class="token operator">/</span><span class="token punctuation">.</span>Card<span class="token operator">--</span><span class="token operator">&gt;</span>
+
+  <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+  <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>Grid column<span class="token operator">--</span><span class="token operator">&gt;</span>
+
+  <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>Grid column<span class="token operator">--</span><span class="token operator">&gt;</span>
+  <span class="token operator">&lt;</span>div class<span class="token operator">=</span><span class="token string">"col-lg-4 col-md-6"</span><span class="token operator">&gt;</span>
+
+    <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>Card<span class="token operator">--</span><span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>div class<span class="token operator">=</span><span class="token string">"card"</span><span class="token operator">&gt;</span>
+
+      <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>Card image<span class="token operator">--</span><span class="token operator">&gt;</span>
+      <span class="token operator">&lt;</span>div class<span class="token operator">=</span><span class="token string">"view overlay"</span><span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>img src<span class="token operator">=</span><span class="token string">"https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(74).jpg"</span> class<span class="token operator">=</span><span class="token string">"card-img-top"</span>
+          alt<span class="token operator">=</span><span class="token string">""</span><span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>a href<span class="token operator">=</span><span class="token string">"#"</span><span class="token operator">&gt;</span>
+          <span class="token operator">&lt;</span>div class<span class="token operator">=</span><span class="token string">"mask rgba-white-slight"</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">/</span>a<span class="token operator">&gt;</span>
+      <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+
+      <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>Card content<span class="token operator">--</span><span class="token operator">&gt;</span>
+      <span class="token operator">&lt;</span>div class<span class="token operator">=</span><span class="token string">"card-body"</span><span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>Title<span class="token operator">--</span><span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>h4 class<span class="token operator">=</span><span class="token string">"card-title"</span><span class="token operator">&gt;</span>Card title<span class="token operator">&lt;</span><span class="token operator">/</span>h4<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>Text<span class="token operator">--</span><span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>p class<span class="token operator">=</span><span class="token string">"card-text"</span><span class="token operator">&gt;</span>Some quick example text to build on the card title and make up the bulk of the card's
+          content<span class="token punctuation">.</span><span class="token operator">&lt;</span><span class="token operator">/</span>p<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>a href<span class="token operator">=</span><span class="token string">"#"</span> class<span class="token operator">=</span><span class="token string">"btn btn-primary"</span><span class="token operator">&gt;</span>Button<span class="token operator">&lt;</span><span class="token operator">/</span>a<span class="token operator">&gt;</span>
+      <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+
+    <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span><span class="token operator">/</span><span class="token punctuation">.</span>Card<span class="token operator">--</span><span class="token operator">&gt;</span>
+
+  <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+  <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>Grid column<span class="token operator">--</span><span class="token operator">&gt;</span>
+
+  <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>Grid column<span class="token operator">--</span><span class="token operator">&gt;</span>
+  <span class="token operator">&lt;</span>div class<span class="token operator">=</span><span class="token string">"col-lg-4 col-md-6"</span><span class="token operator">&gt;</span>
+
+    <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>Card<span class="token operator">--</span><span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>div class<span class="token operator">=</span><span class="token string">"card"</span><span class="token operator">&gt;</span>
+
+      <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>Card image<span class="token operator">--</span><span class="token operator">&gt;</span>
+      <span class="token operator">&lt;</span>div class<span class="token operator">=</span><span class="token string">"view overlay"</span><span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>img src<span class="token operator">=</span><span class="token string">"https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(75).jpg"</span> class<span class="token operator">=</span><span class="token string">"card-img-top"</span>
+          alt<span class="token operator">=</span><span class="token string">""</span><span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>a href<span class="token operator">=</span><span class="token string">"#"</span><span class="token operator">&gt;</span>
+          <span class="token operator">&lt;</span>div class<span class="token operator">=</span><span class="token string">"mask rgba-white-slight"</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">/</span>a<span class="token operator">&gt;</span>
+      <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+
+      <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>Card content<span class="token operator">--</span><span class="token operator">&gt;</span>
+      <span class="token operator">&lt;</span>div class<span class="token operator">=</span><span class="token string">"card-body"</span><span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>Title<span class="token operator">--</span><span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>h4 class<span class="token operator">=</span><span class="token string">"card-title"</span><span class="token operator">&gt;</span>Card title<span class="token operator">&lt;</span><span class="token operator">/</span>h4<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>Text<span class="token operator">--</span><span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>p class<span class="token operator">=</span><span class="token string">"card-text"</span><span class="token operator">&gt;</span>Some quick example text to build on the card title and make up the bulk of the card's
+          content<span class="token punctuation">.</span><span class="token operator">&lt;</span><span class="token operator">/</span>p<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>a href<span class="token operator">=</span><span class="token string">"#"</span> class<span class="token operator">=</span><span class="token string">"btn btn-primary"</span><span class="token operator">&gt;</span>Button<span class="token operator">&lt;</span><span class="token operator">/</span>a<span class="token operator">&gt;</span>
+      <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+
+    <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span><span class="token operator">/</span><span class="token punctuation">.</span>Card<span class="token operator">--</span><span class="token operator">&gt;</span>
+
+  <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+  <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>Grid column<span class="token operator">--</span><span class="token operator">&gt;</span>
+
+<span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>Grid row<span class="token operator">--</span><span class="token operator">&gt;</span>
+
+</code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20210614121611920.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl81MTA4NzU1NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>
+先刷新浏览器看看结果. 我们可以看到整个第二行有三张卡片(除图片不同外都相似), 任使用了波纹效果.<br>
+对上面的代码我们不进行详细解释, 请参考 MDB 卡片</p>
+<h2><a id="_339"></a>页面底部及相关调整</h2>
+<p>页面底部 footer<br>
+将页面底部的</p>
+<p>部分替换为如下代码:</p>
+<pre><code class="prism language-c"><span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> Footer <span class="token operator">--</span><span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span>footer class<span class="token operator">=</span><span class="token string">"page-footer font-small blue pt-4 mt-4"</span><span class="token operator">&gt;</span>
+
+  <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> Footer Links <span class="token operator">--</span><span class="token operator">&gt;</span>
+  <span class="token operator">&lt;</span>div class<span class="token operator">=</span><span class="token string">"container-fluid text-center text-md-left"</span><span class="token operator">&gt;</span>
+
+    <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> Grid row <span class="token operator">--</span><span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>div class<span class="token operator">=</span><span class="token string">"row"</span><span class="token operator">&gt;</span>
+
+      <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> Grid column <span class="token operator">--</span><span class="token operator">&gt;</span>
+      <span class="token operator">&lt;</span>div class<span class="token operator">=</span><span class="token string">"col-md-6 mt-md-0 mt-3"</span><span class="token operator">&gt;</span>
+
+        <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> Content <span class="token operator">--</span><span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>h5 class<span class="token operator">=</span><span class="token string">"text-uppercase"</span><span class="token operator">&gt;</span>Footer Content<span class="token operator">&lt;</span><span class="token operator">/</span>h5<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>p<span class="token operator">&gt;</span>Here you can use rows and columns here to organize your footer content<span class="token punctuation">.</span><span class="token operator">&lt;</span><span class="token operator">/</span>p<span class="token operator">&gt;</span>
+
+      <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+      <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> Grid column <span class="token operator">--</span><span class="token operator">&gt;</span>
+
+      <span class="token operator">&lt;</span>hr class<span class="token operator">=</span><span class="token string">"clearfix w-100 d-md-none pb-3"</span><span class="token operator">&gt;</span>
+
+      <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> Grid column <span class="token operator">--</span><span class="token operator">&gt;</span>
+      <span class="token operator">&lt;</span>div class<span class="token operator">=</span><span class="token string">"col-md-3 mb-md-0 mb-3"</span><span class="token operator">&gt;</span>
+
+        <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> Links <span class="token operator">--</span><span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>h5 class<span class="token operator">=</span><span class="token string">"text-uppercase"</span><span class="token operator">&gt;</span>Links<span class="token operator">&lt;</span><span class="token operator">/</span>h5<span class="token operator">&gt;</span>
+
+        <span class="token operator">&lt;</span>ul class<span class="token operator">=</span><span class="token string">"list-unstyled"</span><span class="token operator">&gt;</span>
+          <span class="token operator">&lt;</span>li<span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span>a href<span class="token operator">=</span><span class="token string">"#!"</span><span class="token operator">&gt;</span>Link <span class="token number">1</span><span class="token operator">&lt;</span><span class="token operator">/</span>a<span class="token operator">&gt;</span>
+          <span class="token operator">&lt;</span><span class="token operator">/</span>li<span class="token operator">&gt;</span>
+          <span class="token operator">&lt;</span>li<span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span>a href<span class="token operator">=</span><span class="token string">"#!"</span><span class="token operator">&gt;</span>Link <span class="token number">2</span><span class="token operator">&lt;</span><span class="token operator">/</span>a<span class="token operator">&gt;</span>
+          <span class="token operator">&lt;</span><span class="token operator">/</span>li<span class="token operator">&gt;</span>
+          <span class="token operator">&lt;</span>li<span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span>a href<span class="token operator">=</span><span class="token string">"#!"</span><span class="token operator">&gt;</span>Link <span class="token number">3</span><span class="token operator">&lt;</span><span class="token operator">/</span>a<span class="token operator">&gt;</span>
+          <span class="token operator">&lt;</span><span class="token operator">/</span>li<span class="token operator">&gt;</span>
+          <span class="token operator">&lt;</span>li<span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span>a href<span class="token operator">=</span><span class="token string">"#!"</span><span class="token operator">&gt;</span>Link <span class="token number">4</span><span class="token operator">&lt;</span><span class="token operator">/</span>a<span class="token operator">&gt;</span>
+          <span class="token operator">&lt;</span><span class="token operator">/</span>li<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">/</span>ul<span class="token operator">&gt;</span>
+
+      <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+      <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> Grid column <span class="token operator">--</span><span class="token operator">&gt;</span>
+
+      <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> Grid column <span class="token operator">--</span><span class="token operator">&gt;</span>
+      <span class="token operator">&lt;</span>div class<span class="token operator">=</span><span class="token string">"col-md-3 mb-md-0 mb-3"</span><span class="token operator">&gt;</span>
+
+        <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> Links <span class="token operator">--</span><span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>h5 class<span class="token operator">=</span><span class="token string">"text-uppercase"</span><span class="token operator">&gt;</span>Links<span class="token operator">&lt;</span><span class="token operator">/</span>h5<span class="token operator">&gt;</span>
+
+        <span class="token operator">&lt;</span>ul class<span class="token operator">=</span><span class="token string">"list-unstyled"</span><span class="token operator">&gt;</span>
+          <span class="token operator">&lt;</span>li<span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span>a href<span class="token operator">=</span><span class="token string">"#!"</span><span class="token operator">&gt;</span>Link <span class="token number">1</span><span class="token operator">&lt;</span><span class="token operator">/</span>a<span class="token operator">&gt;</span>
+          <span class="token operator">&lt;</span><span class="token operator">/</span>li<span class="token operator">&gt;</span>
+          <span class="token operator">&lt;</span>li<span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span>a href<span class="token operator">=</span><span class="token string">"#!"</span><span class="token operator">&gt;</span>Link <span class="token number">2</span><span class="token operator">&lt;</span><span class="token operator">/</span>a<span class="token operator">&gt;</span>
+          <span class="token operator">&lt;</span><span class="token operator">/</span>li<span class="token operator">&gt;</span>
+          <span class="token operator">&lt;</span>li<span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span>a href<span class="token operator">=</span><span class="token string">"#!"</span><span class="token operator">&gt;</span>Link <span class="token number">3</span><span class="token operator">&lt;</span><span class="token operator">/</span>a<span class="token operator">&gt;</span>
+          <span class="token operator">&lt;</span><span class="token operator">/</span>li<span class="token operator">&gt;</span>
+          <span class="token operator">&lt;</span>li<span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span>a href<span class="token operator">=</span><span class="token string">"#!"</span><span class="token operator">&gt;</span>Link <span class="token number">4</span><span class="token operator">&lt;</span><span class="token operator">/</span>a<span class="token operator">&gt;</span>
+          <span class="token operator">&lt;</span><span class="token operator">/</span>li<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">/</span>ul<span class="token operator">&gt;</span>
+
+      <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+      <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> Grid column <span class="token operator">--</span><span class="token operator">&gt;</span>
+
+    <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> Grid row <span class="token operator">--</span><span class="token operator">&gt;</span>
+
+  <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+  <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> Footer Links <span class="token operator">--</span><span class="token operator">&gt;</span>
+
+  <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> Copyright <span class="token operator">--</span><span class="token operator">&gt;</span>
+  <span class="token operator">&lt;</span>div class<span class="token operator">=</span><span class="token string">"footer-copyright text-center py-3"</span><span class="token operator">&gt;</span>© <span class="token number">2018</span> Copyright<span class="token operator">:</span>
+    <span class="token operator">&lt;</span>a href<span class="token operator">=</span><span class="token string">"https://mdbootstrap.com/education/bootstrap/"</span><span class="token operator">&gt;</span> MDBootstrap<span class="token punctuation">.</span>com<span class="token operator">&lt;</span><span class="token operator">/</span>a<span class="token operator">&gt;</span>
+  <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+  <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> Copyright <span class="token operator">--</span><span class="token operator">&gt;</span>
+
+<span class="token operator">&lt;</span><span class="token operator">/</span>footer<span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> Footer <span class="token operator">--</span><span class="token operator">&gt;</span>I
+
+</code></pre>
+<p>一般, 页面的底部我们会放置一些版权和链接之类的. 整个底部分为上下两个部分(div), 上部又分成6-3-3比例的3列.<br>
+MDB 有专门的页面底部组件, 请参考页面底部文档<br>
+我们对上面的样式类简单说明一下:</p>
+<p>blue 蓝色背景, MDB 已经预定义了300多种漂亮的颜色供使用.<br>
+pt-4 mt-4 内边距和外边距为 1.5个 rem. MDB规定, 1 rem = 16 px, 1表示0.25个rem, 2表示0.5个rem, 3表示1个rem, 4表示1.5个rem, 5表示3个rem. 总共有5个距离级别. 详情请前往 spacing查看.<br>
+.text-center .text-md-left 中等尺寸屏幕及以上左对齐, 否则居中<br>
+list-unstyled 无需列表项前的装饰圆点<br>
+至此, 我们整个页面完成.刷新浏览器看看结果. 但有一些小问题, 如: 顶底的颜色不大一致, 主体内容太靠近导航条等. 下面我们对这些小细节进行处理.</p>
+<p>细节调整<br>
+边界一致<br>
+你会发现导航条和底部的内容比主体内容更靠左一些. 查看底部的代码<br>
+,你会发现有container-fluid类, 这将占用整个可用的宽度.<br>
+将其改为container, 刷新浏览器, 你将会发现与主体内容对齐了, 且更美观.</p>
+<p>同样, 请将导航条的内容(就是我们前面说的三个部分)也用container容器包裹起来, 如下所示:</p>
+<pre><code class="prism language-c"><span class="token operator">&lt;</span>header<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>Navbar<span class="token operator">--</span><span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>nav class<span class="token operator">=</span><span class="token string">"navbar navbar-expand-md navbar-dark primary-color"</span><span class="token operator">&gt;</span>
+      <span class="token operator">&lt;</span>div class<span class="token operator">=</span><span class="token string">"container"</span><span class="token operator">&gt;</span>  <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> 请注意<span class="token punctuation">,</span> 这是额外加的 div 开始标签 <span class="token operator">--</span><span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> Navbar brand <span class="token operator">--</span><span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>a class<span class="token operator">=</span><span class="token string">"navbar-brand"</span> href<span class="token operator">=</span><span class="token string">"#"</span><span class="token operator">&gt;</span>Navbar<span class="token operator">&lt;</span><span class="token operator">/</span>a<span class="token operator">&gt;</span>
+        <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>   <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> 其它代码省略 <span class="token operator">--</span><span class="token operator">&gt;</span>
+      <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>  <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> 请注意<span class="token punctuation">,</span> 这是额外加的 div 结束标签 <span class="token operator">--</span><span class="token operator">&gt;</span>
+
+</code></pre>
+<p>提示: 在 Code 中, 你粘贴了代码后, 可能使代码变乱, 可使用Ctrl+Shite+I快速格式化代码.</p>
+<p>颜色一致<br>
+将导航,底部,以及那几个按钮的颜色都调为indigo(靛青色), 代码如下:</p>
+<pre><code class="prism language-c"><span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>Navbar<span class="token operator">--</span><span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span>nav class<span class="token operator">=</span><span class="token string">"navbar navbar-expand-lg navbar-dark indigo"</span><span class="token operator">&gt;</span>
+
+<span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> Footer <span class="token operator">--</span><span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span>footer class<span class="token operator">=</span><span class="token string">"page-footer font-small indigo pt-4 mt-4"</span><span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> <span class="token operator">--</span><span class="token operator">--</span> <span class="token operator">--</span><span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span>a href<span class="token operator">=</span><span class="token string">"#"</span> class<span class="token operator">=</span><span class="token string">"btn btn-indigo"</span><span class="token operator">&gt;</span>Button<span class="token operator">&lt;</span><span class="token operator">/</span>a<span class="token operator">&gt;</span>
+
+</code></pre>
+<p>调整间距<br>
+我们让页面主体的顶部离导航条稍微远一点, 加顶外边距mt-5即可:</p>
+<pre><code class="prism language-c"><span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>Main layout<span class="token operator">--</span><span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span>main class<span class="token operator">=</span><span class="token string">"mt-5"</span><span class="token operator">&gt;</span>
+然后<span class="token punctuation">,</span> 我们让页面主体第一行与下一行分开一点<span class="token punctuation">,</span> 分别设置第一行的两列<span class="token punctuation">,</span> 加底外边距mb<span class="token operator">-</span><span class="token number">4</span>即可<span class="token operator">:</span>
+
+<span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>Grid column <span class="token number">1</span><span class="token operator">--</span><span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span>div class<span class="token operator">=</span><span class="token string">"col-md-7 mb-4"</span><span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>Grid column <span class="token number">2</span><span class="token operator">--</span><span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span>div class<span class="token operator">=</span><span class="token string">"col-md-5 mb-4"</span><span class="token operator">&gt;</span>
+
+</code></pre>
+<p>刷新试试.</p>
+<p>思考: 为何不直接将mb-4加到第一行, 而要分别加到第一行的两列? 提示: 我们的页面是响应式的. 考虑一下小屏幕(&lt;768px时)上会发生什么.</p>
+<p>同样的, 我们也为第二行的三列各自加上底外边距mb-4, 让其离底部稍远一点:</p>
+<pre><code class="prism language-c"><span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>注意<span class="token operator">:</span> 第二行的三列都如此<span class="token operator">--</span><span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span>div class<span class="token operator">=</span><span class="token string">"col-lg-4 col-md-12 mb-4"</span><span class="token operator">&gt;</span>
+
+</code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20210614122611543.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl81MTA4NzU1NQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2><a id="_501"></a>代码参考</h2>
+<pre><code class="prism language-c"><span class="token operator">&lt;</span><span class="token operator">!</span>DOCTYPE html<span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span>html<span class="token operator">&gt;</span>
+
+<span class="token operator">&lt;</span>head<span class="token operator">&gt;</span>
+  <span class="token operator">&lt;</span>meta charset<span class="token operator">=</span><span class="token string">"UTF-8"</span><span class="token operator">&gt;</span>
+  <span class="token operator">&lt;</span>meta name<span class="token operator">=</span><span class="token string">"viewport"</span> content<span class="token operator">=</span><span class="token string">"width=device-width, initial-scale=1, shrink-to-fit=no"</span><span class="token operator">&gt;</span>
+  <span class="token operator">&lt;</span>meta http<span class="token operator">-</span>equiv<span class="token operator">=</span><span class="token string">"x-ua-compatible"</span> content<span class="token operator">=</span><span class="token string">"ie=edge"</span><span class="token operator">&gt;</span>
+  <span class="token operator">&lt;</span>title<span class="token operator">&gt;</span>MDB4<span class="token punctuation">.</span><span class="token number">12</span>模板<span class="token operator">&lt;</span><span class="token operator">/</span>title<span class="token operator">&gt;</span>
+  <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> MDB icon <span class="token operator">--</span><span class="token operator">&gt;</span>
+  <span class="token operator">&lt;</span>link rel<span class="token operator">=</span><span class="token string">"icon"</span> href<span class="token operator">=</span><span class="token string">"img/mdb-favicon.ico"</span> type<span class="token operator">=</span><span class="token string">"image/x-icon"</span><span class="token operator">&gt;</span>
+  <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> Font Awesome <span class="token operator">--</span><span class="token operator">&gt;</span>
+  <span class="token operator">&lt;</span>link rel<span class="token operator">=</span><span class="token string">"stylesheet"</span> href<span class="token operator">=</span><span class="token string">"https://use.fontawesome.com/releases/v5.11.2/css/all.css"</span><span class="token operator">&gt;</span>
+  <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> Bootstrap core CSS <span class="token operator">--</span><span class="token operator">&gt;</span>
+  <span class="token operator">&lt;</span>link rel<span class="token operator">=</span><span class="token string">"stylesheet"</span> href<span class="token operator">=</span><span class="token string">"css/bootstrap.min.css"</span><span class="token operator">&gt;</span>
+  <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> Material Design Bootstrap <span class="token operator">--</span><span class="token operator">&gt;</span>
+  <span class="token operator">&lt;</span>link rel<span class="token operator">=</span><span class="token string">"stylesheet"</span> href<span class="token operator">=</span><span class="token string">"css/mdb.min.css"</span><span class="token operator">&gt;</span>
+  <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> Your custom <span class="token function">styles</span> <span class="token punctuation">(</span>optional<span class="token punctuation">)</span> <span class="token operator">--</span><span class="token operator">&gt;</span>
+  <span class="token operator">&lt;</span>link rel<span class="token operator">=</span><span class="token string">"stylesheet"</span> href<span class="token operator">=</span><span class="token string">"css/style.css"</span><span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>head<span class="token operator">&gt;</span>
+
+<span class="token operator">&lt;</span>body<span class="token operator">&gt;</span>
+  <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>Main Navigation<span class="token operator">--</span><span class="token operator">&gt;</span>
+  <span class="token operator">&lt;</span>header<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>Navbar<span class="token operator">--</span><span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>nav class<span class="token operator">=</span><span class="token string">"navbar navbar-expand-md navbar-dark indigo"</span><span class="token operator">&gt;</span>
+      <span class="token operator">&lt;</span>div class<span class="token operator">=</span><span class="token string">"container"</span><span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> Navbar brand <span class="token operator">--</span><span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>a class<span class="token operator">=</span><span class="token string">"navbar-brand"</span> href<span class="token operator">=</span><span class="token string">"#"</span><span class="token operator">&gt;</span>Navbar<span class="token operator">&lt;</span><span class="token operator">/</span>a<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> Collapse button <span class="token operator">--</span><span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>button class<span class="token operator">=</span><span class="token string">"navbar-toggler"</span> type<span class="token operator">=</span><span class="token string">"button"</span> data<span class="token operator">-</span>toggle<span class="token operator">=</span><span class="token string">"collapse"</span> data<span class="token operator">-</span>target<span class="token operator">=</span><span class="token string">"#basicExampleNav"</span>
+          aria<span class="token operator">-</span>controls<span class="token operator">=</span><span class="token string">"basicExampleNav"</span> aria<span class="token operator">-</span>expanded<span class="token operator">=</span><span class="token string">"false"</span> aria<span class="token operator">-</span>label<span class="token operator">=</span><span class="token string">"Toggle navigation"</span><span class="token operator">&gt;</span>
+          <span class="token operator">&lt;</span>span class<span class="token operator">=</span><span class="token string">"navbar-toggler-icon"</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>span<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">/</span>button<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> Collapsible content <span class="token operator">--</span><span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>div class<span class="token operator">=</span><span class="token string">"collapse navbar-collapse"</span> id<span class="token operator">=</span><span class="token string">"basicExampleNav"</span><span class="token operator">&gt;</span>
+          <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> Links <span class="token operator">--</span><span class="token operator">&gt;</span>
+          <span class="token operator">&lt;</span>ul class<span class="token operator">=</span><span class="token string">"navbar-nav mr-auto"</span><span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span>li class<span class="token operator">=</span><span class="token string">"nav-item active"</span><span class="token operator">&gt;</span>
+              <span class="token operator">&lt;</span>a class<span class="token operator">=</span><span class="token string">"nav-link"</span> href<span class="token operator">=</span><span class="token string">"#"</span><span class="token operator">&gt;</span>Home
+                <span class="token operator">&lt;</span>span class<span class="token operator">=</span><span class="token string">"sr-only"</span><span class="token operator">&gt;</span><span class="token punctuation">(</span>current<span class="token punctuation">)</span><span class="token operator">&lt;</span><span class="token operator">/</span>span<span class="token operator">&gt;</span>
+              <span class="token operator">&lt;</span><span class="token operator">/</span>a<span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span><span class="token operator">/</span>li<span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span>li class<span class="token operator">=</span><span class="token string">"nav-item"</span><span class="token operator">&gt;</span>
+              <span class="token operator">&lt;</span>a class<span class="token operator">=</span><span class="token string">"nav-link"</span> href<span class="token operator">=</span><span class="token string">"#"</span><span class="token operator">&gt;</span>Features<span class="token operator">&lt;</span><span class="token operator">/</span>a<span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span><span class="token operator">/</span>li<span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span>li class<span class="token operator">=</span><span class="token string">"nav-item"</span><span class="token operator">&gt;</span>
+              <span class="token operator">&lt;</span>a class<span class="token operator">=</span><span class="token string">"nav-link"</span> href<span class="token operator">=</span><span class="token string">"#"</span><span class="token operator">&gt;</span>Pricing<span class="token operator">&lt;</span><span class="token operator">/</span>a<span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span><span class="token operator">/</span>li<span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> Dropdown <span class="token operator">--</span><span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span>li class<span class="token operator">=</span><span class="token string">"nav-item dropdown"</span><span class="token operator">&gt;</span>
+              <span class="token operator">&lt;</span>a class<span class="token operator">=</span><span class="token string">"nav-link dropdown-toggle"</span> id<span class="token operator">=</span><span class="token string">"navbarDropdownMenuLink"</span> data<span class="token operator">-</span>toggle<span class="token operator">=</span><span class="token string">"dropdown"</span>
+                aria<span class="token operator">-</span>haspopup<span class="token operator">=</span><span class="token string">"true"</span> aria<span class="token operator">-</span>expanded<span class="token operator">=</span><span class="token string">"false"</span><span class="token operator">&gt;</span>Dropdown<span class="token operator">&lt;</span><span class="token operator">/</span>a<span class="token operator">&gt;</span>
+              <span class="token operator">&lt;</span>div class<span class="token operator">=</span><span class="token string">"dropdown-menu dropdown-primary"</span> aria<span class="token operator">-</span>labelledby<span class="token operator">=</span><span class="token string">"navbarDropdownMenuLink"</span><span class="token operator">&gt;</span>
+                <span class="token operator">&lt;</span>a class<span class="token operator">=</span><span class="token string">"dropdown-item"</span> href<span class="token operator">=</span><span class="token string">"#"</span><span class="token operator">&gt;</span>Action<span class="token operator">&lt;</span><span class="token operator">/</span>a<span class="token operator">&gt;</span>
+                <span class="token operator">&lt;</span>a class<span class="token operator">=</span><span class="token string">"dropdown-item"</span> href<span class="token operator">=</span><span class="token string">"#"</span><span class="token operator">&gt;</span>Another action<span class="token operator">&lt;</span><span class="token operator">/</span>a<span class="token operator">&gt;</span>
+                <span class="token operator">&lt;</span>a class<span class="token operator">=</span><span class="token string">"dropdown-item"</span> href<span class="token operator">=</span><span class="token string">"#"</span><span class="token operator">&gt;</span>Something <span class="token keyword">else</span> here<span class="token operator">&lt;</span><span class="token operator">/</span>a<span class="token operator">&gt;</span>
+              <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span><span class="token operator">/</span>li<span class="token operator">&gt;</span>
+          <span class="token operator">&lt;</span><span class="token operator">/</span>ul<span class="token operator">&gt;</span>
+          <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> Links <span class="token operator">--</span><span class="token operator">&gt;</span>
+          <span class="token operator">&lt;</span>form class<span class="token operator">=</span><span class="token string">"form-inline"</span><span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span>div class<span class="token operator">=</span><span class="token string">"md-form my-0"</span><span class="token operator">&gt;</span>
+              <span class="token operator">&lt;</span>input class<span class="token operator">=</span><span class="token string">"form-control mr-sm-2"</span> type<span class="token operator">=</span><span class="token string">"text"</span> placeholder<span class="token operator">=</span><span class="token string">"Search"</span> aria<span class="token operator">-</span>label<span class="token operator">=</span><span class="token string">"Search"</span><span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+          <span class="token operator">&lt;</span><span class="token operator">/</span>form<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> Collapsible content <span class="token operator">--</span><span class="token operator">&gt;</span>
+      <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span>nav<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span><span class="token operator">/</span><span class="token punctuation">.</span>Navbar<span class="token operator">--</span><span class="token operator">&gt;</span>
+  <span class="token operator">&lt;</span><span class="token operator">/</span>header<span class="token operator">&gt;</span>
+  <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>Main Navigation<span class="token operator">--</span><span class="token operator">&gt;</span>
+
+  <span class="token operator">&lt;</span>main class<span class="token operator">=</span><span class="token string">"mt-5"</span><span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>Main container<span class="token operator">--</span><span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>div class<span class="token operator">=</span><span class="token string">"container"</span><span class="token operator">&gt;</span>
+      <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>Grid row <span class="token number">1</span><span class="token operator">--</span><span class="token operator">&gt;</span>
+      <span class="token operator">&lt;</span>div class<span class="token operator">=</span><span class="token string">"row"</span><span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>Grid column <span class="token number">1</span><span class="token operator">--</span><span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>div class<span class="token operator">=</span><span class="token string">"col-md-7 mb-4"</span><span class="token operator">&gt;</span>
+          <span class="token operator">&lt;</span>div class<span class="token operator">=</span><span class="token string">"view overlay z-depth-1-half"</span><span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span>img src<span class="token operator">=</span><span class="token string">"https://mdbootstrap.com/img/Photos/Slides/img%20(70).jpg"</span> class<span class="token operator">=</span><span class="token string">"card-img-top"</span> alt<span class="token operator">=</span><span class="token string">""</span><span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span>div class<span class="token operator">=</span><span class="token string">"mask rgba-white-light"</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+          <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>Grid column<span class="token operator">--</span><span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>Grid column <span class="token number">2</span><span class="token operator">--</span><span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>div class<span class="token operator">=</span><span class="token string">"col-md-5 mb-4"</span><span class="token operator">&gt;</span>
+          <span class="token operator">&lt;</span>h2<span class="token operator">&gt;</span>Some awesome heading<span class="token operator">&lt;</span><span class="token operator">/</span>h2<span class="token operator">&gt;</span>
+          <span class="token operator">&lt;</span>hr<span class="token operator">&gt;</span>
+          <span class="token operator">&lt;</span>p<span class="token operator">&gt;</span>Lorem ipsum dolor sit amet<span class="token punctuation">,</span> consectetur adipisicing elit<span class="token punctuation">.</span> Blanditiis pariatur quod ipsum atque quam dolorem
+            voluptate officia sunt placeat consectetur alias fugit cum praesentium ratione sint mollitia<span class="token punctuation">,</span> perferendis
+            natus quaerat<span class="token operator">!</span><span class="token operator">&lt;</span><span class="token operator">/</span>p<span class="token operator">&gt;</span>
+          <span class="token operator">&lt;</span>a href<span class="token operator">=</span><span class="token string">"#"</span> class<span class="token operator">=</span><span class="token string">"btn btn-indigo"</span><span class="token operator">&gt;</span>Get it now<span class="token operator">!</span><span class="token operator">&lt;</span><span class="token operator">/</span>a<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>Grid column<span class="token operator">--</span><span class="token operator">&gt;</span>
+      <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+      <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>Grid row<span class="token operator">--</span><span class="token operator">&gt;</span>
+      <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>Grid row <span class="token number">2</span><span class="token operator">--</span><span class="token operator">&gt;</span>
+      <span class="token operator">&lt;</span>div class<span class="token operator">=</span><span class="token string">"row"</span><span class="token operator">&gt;</span>
+
+        <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>Grid column<span class="token operator">--</span><span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>div class<span class="token operator">=</span><span class="token string">"col-lg-4 col-md-12 mb-4"</span><span class="token operator">&gt;</span>
+
+          <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>Card<span class="token operator">--</span><span class="token operator">&gt;</span>
+          <span class="token operator">&lt;</span>div class<span class="token operator">=</span><span class="token string">"card"</span><span class="token operator">&gt;</span>
+
+            <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>Card image<span class="token operator">--</span><span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span>div class<span class="token operator">=</span><span class="token string">"view overlay"</span><span class="token operator">&gt;</span>
+              <span class="token operator">&lt;</span>img src<span class="token operator">=</span><span class="token string">"https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(72).jpg"</span> class<span class="token operator">=</span><span class="token string">"card-img-top"</span>
+                alt<span class="token operator">=</span><span class="token string">""</span><span class="token operator">&gt;</span>
+              <span class="token operator">&lt;</span>a href<span class="token operator">=</span><span class="token string">"#"</span><span class="token operator">&gt;</span>
+                <span class="token operator">&lt;</span>div class<span class="token operator">=</span><span class="token string">"mask rgba-white-slight"</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+              <span class="token operator">&lt;</span><span class="token operator">/</span>a<span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+
+            <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>Card content<span class="token operator">--</span><span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span>div class<span class="token operator">=</span><span class="token string">"card-body"</span><span class="token operator">&gt;</span>
+              <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>Title<span class="token operator">--</span><span class="token operator">&gt;</span>
+              <span class="token operator">&lt;</span>h4 class<span class="token operator">=</span><span class="token string">"card-title"</span><span class="token operator">&gt;</span>Card title<span class="token operator">&lt;</span><span class="token operator">/</span>h4<span class="token operator">&gt;</span>
+              <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>Text<span class="token operator">--</span><span class="token operator">&gt;</span>
+              <span class="token operator">&lt;</span>p class<span class="token operator">=</span><span class="token string">"card-text"</span><span class="token operator">&gt;</span>Some quick example text to build on the card title and make up the bulk of the card's
+                content<span class="token punctuation">.</span><span class="token operator">&lt;</span><span class="token operator">/</span>p<span class="token operator">&gt;</span>
+              <span class="token operator">&lt;</span>a href<span class="token operator">=</span><span class="token string">"#!"</span> class<span class="token operator">=</span><span class="token string">"btn btn-indigo"</span><span class="token operator">&gt;</span>Button<span class="token operator">&lt;</span><span class="token operator">/</span>a<span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+
+          <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+          <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span><span class="token operator">/</span><span class="token punctuation">.</span>Card<span class="token operator">--</span><span class="token operator">&gt;</span>
+
+        <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>Grid column<span class="token operator">--</span><span class="token operator">&gt;</span>
+
+        <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>Grid column<span class="token operator">--</span><span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>div class<span class="token operator">=</span><span class="token string">"col-lg-4 col-md-6 mb-4"</span><span class="token operator">&gt;</span>
+
+          <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>Card<span class="token operator">--</span><span class="token operator">&gt;</span>
+          <span class="token operator">&lt;</span>div class<span class="token operator">=</span><span class="token string">"card"</span><span class="token operator">&gt;</span>
+
+            <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>Card image<span class="token operator">--</span><span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span>div class<span class="token operator">=</span><span class="token string">"view overlay"</span><span class="token operator">&gt;</span>
+              <span class="token operator">&lt;</span>img src<span class="token operator">=</span><span class="token string">"https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(74).jpg"</span> class<span class="token operator">=</span><span class="token string">"card-img-top"</span>
+                alt<span class="token operator">=</span><span class="token string">""</span><span class="token operator">&gt;</span>
+              <span class="token operator">&lt;</span>a href<span class="token operator">=</span><span class="token string">"#"</span><span class="token operator">&gt;</span>
+                <span class="token operator">&lt;</span>div class<span class="token operator">=</span><span class="token string">"mask rgba-white-slight"</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+              <span class="token operator">&lt;</span><span class="token operator">/</span>a<span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+
+            <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>Card content<span class="token operator">--</span><span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span>div class<span class="token operator">=</span><span class="token string">"card-body"</span><span class="token operator">&gt;</span>
+              <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>Title<span class="token operator">--</span><span class="token operator">&gt;</span>
+              <span class="token operator">&lt;</span>h4 class<span class="token operator">=</span><span class="token string">"card-title"</span><span class="token operator">&gt;</span>Card title<span class="token operator">&lt;</span><span class="token operator">/</span>h4<span class="token operator">&gt;</span>
+              <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>Text<span class="token operator">--</span><span class="token operator">&gt;</span>
+              <span class="token operator">&lt;</span>p class<span class="token operator">=</span><span class="token string">"card-text"</span><span class="token operator">&gt;</span>Some quick example text to build on the card title and make up the bulk of the card's
+                content<span class="token punctuation">.</span><span class="token operator">&lt;</span><span class="token operator">/</span>p<span class="token operator">&gt;</span>
+              <span class="token operator">&lt;</span>a href<span class="token operator">=</span><span class="token string">"#"</span> class<span class="token operator">=</span><span class="token string">"btn btn-indigo"</span><span class="token operator">&gt;</span>Button<span class="token operator">&lt;</span><span class="token operator">/</span>a<span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+
+          <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+          <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span><span class="token operator">/</span><span class="token punctuation">.</span>Card<span class="token operator">--</span><span class="token operator">&gt;</span>
+
+        <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>Grid column<span class="token operator">--</span><span class="token operator">&gt;</span>
+
+        <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>Grid column<span class="token operator">--</span><span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>div class<span class="token operator">=</span><span class="token string">"col-lg-4 col-md-6 mb-4"</span><span class="token operator">&gt;</span>
+
+          <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>Card<span class="token operator">--</span><span class="token operator">&gt;</span>
+          <span class="token operator">&lt;</span>div class<span class="token operator">=</span><span class="token string">"card"</span><span class="token operator">&gt;</span>
+
+            <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>Card image<span class="token operator">--</span><span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span>div class<span class="token operator">=</span><span class="token string">"view overlay"</span><span class="token operator">&gt;</span>
+              <span class="token operator">&lt;</span>img src<span class="token operator">=</span><span class="token string">"https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(75).jpg"</span> class<span class="token operator">=</span><span class="token string">"card-img-top"</span>
+                alt<span class="token operator">=</span><span class="token string">""</span><span class="token operator">&gt;</span>
+              <span class="token operator">&lt;</span>a href<span class="token operator">=</span><span class="token string">"#"</span><span class="token operator">&gt;</span>
+                <span class="token operator">&lt;</span>div class<span class="token operator">=</span><span class="token string">"mask rgba-white-slight"</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+              <span class="token operator">&lt;</span><span class="token operator">/</span>a<span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+
+            <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>Card content<span class="token operator">--</span><span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span>div class<span class="token operator">=</span><span class="token string">"card-body"</span><span class="token operator">&gt;</span>
+              <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>Title<span class="token operator">--</span><span class="token operator">&gt;</span>
+              <span class="token operator">&lt;</span>h4 class<span class="token operator">=</span><span class="token string">"card-title"</span><span class="token operator">&gt;</span>Card title<span class="token operator">&lt;</span><span class="token operator">/</span>h4<span class="token operator">&gt;</span>
+              <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>Text<span class="token operator">--</span><span class="token operator">&gt;</span>
+              <span class="token operator">&lt;</span>p class<span class="token operator">=</span><span class="token string">"card-text"</span><span class="token operator">&gt;</span>Some quick example text to build on the card title and make up the bulk of the card's
+                content<span class="token punctuation">.</span><span class="token operator">&lt;</span><span class="token operator">/</span>p<span class="token operator">&gt;</span>
+              <span class="token operator">&lt;</span>a href<span class="token operator">=</span><span class="token string">"#"</span> class<span class="token operator">=</span><span class="token string">"btn btn-indigo"</span><span class="token operator">&gt;</span>Button<span class="token operator">&lt;</span><span class="token operator">/</span>a<span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+
+          <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+          <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span><span class="token operator">/</span><span class="token punctuation">.</span>Card<span class="token operator">--</span><span class="token operator">&gt;</span>
+
+        <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>Grid column<span class="token operator">--</span><span class="token operator">&gt;</span>
+
+      <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+      <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>Grid row<span class="token operator">--</span><span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>Main container<span class="token operator">--</span><span class="token operator">&gt;</span>
+  <span class="token operator">&lt;</span><span class="token operator">/</span>main<span class="token operator">&gt;</span>
+
+  <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> Footer <span class="token operator">--</span><span class="token operator">&gt;</span>
+  <span class="token operator">&lt;</span>footer class<span class="token operator">=</span><span class="token string">"page-footer indigo pt-4 mt-4"</span><span class="token operator">&gt;</span>
+
+    <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> Footer Links <span class="token operator">--</span><span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>div class<span class="token operator">=</span><span class="token string">"container text-center text-md-left"</span><span class="token operator">&gt;</span>
+
+      <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> Grid row <span class="token operator">--</span><span class="token operator">&gt;</span>
+      <span class="token operator">&lt;</span>div class<span class="token operator">=</span><span class="token string">"row"</span><span class="token operator">&gt;</span>
+
+        <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> Grid column <span class="token operator">--</span><span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>div class<span class="token operator">=</span><span class="token string">"col-md-6 mt-md-0 mt-3"</span><span class="token operator">&gt;</span>
+
+          <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> Content <span class="token operator">--</span><span class="token operator">&gt;</span>
+          <span class="token operator">&lt;</span>h5 class<span class="token operator">=</span><span class="token string">"text-uppercase"</span><span class="token operator">&gt;</span>Footer Content<span class="token operator">&lt;</span><span class="token operator">/</span>h5<span class="token operator">&gt;</span>
+          <span class="token operator">&lt;</span>p<span class="token operator">&gt;</span>Here you can use rows and columns here to organize your footer content<span class="token punctuation">.</span><span class="token operator">&lt;</span><span class="token operator">/</span>p<span class="token operator">&gt;</span>
+
+        <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> Grid column <span class="token operator">--</span><span class="token operator">&gt;</span>
+
+        <span class="token operator">&lt;</span>hr class<span class="token operator">=</span><span class="token string">"clearfix w-100 d-md-none pb-3"</span><span class="token operator">&gt;</span>
+
+        <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> Grid column <span class="token operator">--</span><span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>div class<span class="token operator">=</span><span class="token string">"col-md-3 mb-md-0 mb-3"</span><span class="token operator">&gt;</span>
+
+          <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> Links <span class="token operator">--</span><span class="token operator">&gt;</span>
+          <span class="token operator">&lt;</span>h5 class<span class="token operator">=</span><span class="token string">"text-uppercase"</span><span class="token operator">&gt;</span>Links<span class="token operator">&lt;</span><span class="token operator">/</span>h5<span class="token operator">&gt;</span>
+
+          <span class="token operator">&lt;</span>ul class<span class="token operator">=</span><span class="token string">"list-unstyled"</span><span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span>li<span class="token operator">&gt;</span>
+              <span class="token operator">&lt;</span>a href<span class="token operator">=</span><span class="token string">"#!"</span><span class="token operator">&gt;</span>Link <span class="token number">1</span><span class="token operator">&lt;</span><span class="token operator">/</span>a<span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span><span class="token operator">/</span>li<span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span>li<span class="token operator">&gt;</span>
+              <span class="token operator">&lt;</span>a href<span class="token operator">=</span><span class="token string">"#!"</span><span class="token operator">&gt;</span>Link <span class="token number">2</span><span class="token operator">&lt;</span><span class="token operator">/</span>a<span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span><span class="token operator">/</span>li<span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span>li<span class="token operator">&gt;</span>
+              <span class="token operator">&lt;</span>a href<span class="token operator">=</span><span class="token string">"#!"</span><span class="token operator">&gt;</span>Link <span class="token number">3</span><span class="token operator">&lt;</span><span class="token operator">/</span>a<span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span><span class="token operator">/</span>li<span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span>li<span class="token operator">&gt;</span>
+              <span class="token operator">&lt;</span>a href<span class="token operator">=</span><span class="token string">"#!"</span><span class="token operator">&gt;</span>Link <span class="token number">4</span><span class="token operator">&lt;</span><span class="token operator">/</span>a<span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span><span class="token operator">/</span>li<span class="token operator">&gt;</span>
+          <span class="token operator">&lt;</span><span class="token operator">/</span>ul<span class="token operator">&gt;</span>
+
+        <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> Grid column <span class="token operator">--</span><span class="token operator">&gt;</span>
+
+        <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> Grid column <span class="token operator">--</span><span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>div class<span class="token operator">=</span><span class="token string">"col-md-3 mb-md-0 mb-3"</span><span class="token operator">&gt;</span>
+
+          <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> Links <span class="token operator">--</span><span class="token operator">&gt;</span>
+          <span class="token operator">&lt;</span>h5 class<span class="token operator">=</span><span class="token string">"text-uppercase"</span><span class="token operator">&gt;</span>Links<span class="token operator">&lt;</span><span class="token operator">/</span>h5<span class="token operator">&gt;</span>
+
+          <span class="token operator">&lt;</span>ul class<span class="token operator">=</span><span class="token string">"list-unstyled"</span><span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span>li<span class="token operator">&gt;</span>
+              <span class="token operator">&lt;</span>a href<span class="token operator">=</span><span class="token string">"#!"</span><span class="token operator">&gt;</span>Link <span class="token number">1</span><span class="token operator">&lt;</span><span class="token operator">/</span>a<span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span><span class="token operator">/</span>li<span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span>li<span class="token operator">&gt;</span>
+              <span class="token operator">&lt;</span>a href<span class="token operator">=</span><span class="token string">"#!"</span><span class="token operator">&gt;</span>Link <span class="token number">2</span><span class="token operator">&lt;</span><span class="token operator">/</span>a<span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span><span class="token operator">/</span>li<span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span>li<span class="token operator">&gt;</span>
+              <span class="token operator">&lt;</span>a href<span class="token operator">=</span><span class="token string">"#!"</span><span class="token operator">&gt;</span>Link <span class="token number">3</span><span class="token operator">&lt;</span><span class="token operator">/</span>a<span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span><span class="token operator">/</span>li<span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span>li<span class="token operator">&gt;</span>
+              <span class="token operator">&lt;</span>a href<span class="token operator">=</span><span class="token string">"#!"</span><span class="token operator">&gt;</span>Link <span class="token number">4</span><span class="token operator">&lt;</span><span class="token operator">/</span>a<span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span><span class="token operator">/</span>li<span class="token operator">&gt;</span>
+          <span class="token operator">&lt;</span><span class="token operator">/</span>ul<span class="token operator">&gt;</span>
+
+        <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> Grid column <span class="token operator">--</span><span class="token operator">&gt;</span>
+
+      <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+      <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> Grid row <span class="token operator">--</span><span class="token operator">&gt;</span>
+
+    <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> Footer Links <span class="token operator">--</span><span class="token operator">&gt;</span>
+
+    <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> Copyright <span class="token operator">--</span><span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>div class<span class="token operator">=</span><span class="token string">"footer-copyright text-center py-3"</span><span class="token operator">&gt;</span>© <span class="token number">2018</span> Copyright<span class="token operator">:</span>
+      <span class="token operator">&lt;</span>a href<span class="token operator">=</span><span class="token string">"https://mdbootstrap.com/education/bootstrap/"</span><span class="token operator">&gt;</span> MDBootstrap<span class="token punctuation">.</span>com<span class="token operator">&lt;</span><span class="token operator">/</span>a<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> Copyright <span class="token operator">--</span><span class="token operator">&gt;</span>
+
+  <span class="token operator">&lt;</span><span class="token operator">/</span>footer<span class="token operator">&gt;</span>
+  <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> Footer <span class="token operator">--</span><span class="token operator">&gt;</span>I
+
+  <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> jQuery <span class="token operator">--</span><span class="token operator">&gt;</span>
+  <span class="token operator">&lt;</span>script type<span class="token operator">=</span><span class="token string">"text/javascript"</span> src<span class="token operator">=</span><span class="token string">"js/jquery.min.js"</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">&gt;</span>
+  <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> Bootstrap tooltips <span class="token operator">--</span><span class="token operator">&gt;</span>
+  <span class="token operator">&lt;</span>script type<span class="token operator">=</span><span class="token string">"text/javascript"</span> src<span class="token operator">=</span><span class="token string">"js/popper.min.js"</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">&gt;</span>
+  <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> Bootstrap core JavaScript <span class="token operator">--</span><span class="token operator">&gt;</span>
+  <span class="token operator">&lt;</span>script type<span class="token operator">=</span><span class="token string">"text/javascript"</span> src<span class="token operator">=</span><span class="token string">"js/bootstrap.min.js"</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">&gt;</span>
+  <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> MDB core JavaScript <span class="token operator">--</span><span class="token operator">&gt;</span>
+  <span class="token operator">&lt;</span>script type<span class="token operator">=</span><span class="token string">"text/javascript"</span> src<span class="token operator">=</span><span class="token string">"js/mdb.min.js"</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">&gt;</span>
+  <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> Your custom <span class="token function">scripts</span> <span class="token punctuation">(</span>optional<span class="token punctuation">)</span> <span class="token operator">--</span><span class="token operator">&gt;</span>
+  <span class="token operator">&lt;</span>script type<span class="token operator">=</span><span class="token string">"text/javascript"</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">&gt;</span>
+
+<span class="token operator">&lt;</span><span class="token operator">/</span>body<span class="token operator">&gt;</span>
+
+## 网站的托管
+首先我们创建一个GitHub的账号
+<span class="token operator">!</span><span class="token punctuation">[</span>在这里插入图片描述<span class="token punctuation">]</span><span class="token punctuation">(</span>https<span class="token operator">:</span><span class="token comment">//img-blog.csdnimg.cn/20210616160205673.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl81MTA4NzU1NQ==,size_16,color_FFFFFF,t_70)</span>
+
+</code></pre>
+</div>
+</body>
+
+</html>
